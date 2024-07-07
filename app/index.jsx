@@ -13,10 +13,11 @@ import {
   ActivityIndicator,
   TextInput,
 } from "react-native";
-import { useState } from "react";
+import { useState, useContext } from "react";
 
 import { HelloWave } from "@/components/HelloWave";
 import { Link } from "expo-router";
+import { router } from "expo-router";
 import ParallaxScrollView from "@/components/ParallaxScrollView";
 import { ThemedText } from "@/components/ThemedText";
 import { ThemedView } from "@/components/ThemedView";
@@ -24,9 +25,26 @@ import { useColorScheme } from "@/hooks/useColorScheme";
 import { useThemeColor } from "@/hooks/useThemeColor";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { Ionicons } from "@expo/vector-icons";
+import DataContext from "../context/DataContext";
 
 export default function HomeScreen() {
   const colorScheme = useColorScheme();
+  const {
+    email,
+    password,
+    user,
+    signed,
+    username,
+    phone,
+    signUpError,
+    setEmail,
+    setPassword,
+    submit,
+    setPhone,
+    setUsername,
+    SignUpLoading,
+    signInWithGoogle,
+  } = useContext(DataContext);
 
   const color = useThemeColor({ light: "black", dark: "white" }, "text");
 
@@ -35,6 +53,15 @@ export default function HomeScreen() {
   const ViewInputPassword = () => {
     !viewPassword ? setViewPassword(true) : setViewPassword(false);
   };
+
+  const handleEmailChange = (text) => {
+    setEmail(text);
+  };
+  const handlePasswordChange = (text) => {
+    setPassword(text);
+  };
+
+  user ? router.replace("/Login") : "";
 
   return (
     <SafeAreaView>
@@ -54,6 +81,7 @@ export default function HomeScreen() {
                   placeholderTextColor={"gray"}
                   placeholder="john@example.com"
                   color="white"
+                  onChangeText={handleEmailChange}
                   //onChangeText={handlePasswordChange}
                 />
                 <Ionicons
@@ -70,6 +98,7 @@ export default function HomeScreen() {
                   style={[styles.textInput]}
                   placeholderTextColor={"gray"}
                   placeholder="***********"
+                  onChangeText={handlePasswordChange}
                   //onChangeText={handlePasswordChange}
                   color="white"
                   secureTextEntry={viewPassword}
@@ -84,21 +113,39 @@ export default function HomeScreen() {
               </View>
               {/* password entry green */}
               {/* Policy */}
-              <View style={styles.policy}>
-                <View
-                  style={{
-                    width: 10,
-                    backgroundColor: "#55A59A",
-                    height: 10,
-                    marginRight: 10,
-                    borderRadius: "100%",
-                  }}
-                ></View>
-                <ThemedText style={{ width: "80%" }} type="tiny">
-                  I agree to privacy policy, cookies policy and terms and
-                  conditions.
-                </ThemedText>
-              </View>
+              {signUpError ? (
+                <View style={styles.policy}>
+                  <View
+                    style={{
+                      width: 10,
+                      backgroundColor: "red",
+                      height: 10,
+                      marginRight: 10,
+                      borderRadius: "100%",
+                    }}
+                  ></View>
+                  <ThemedText style={{ width: "80%" }} type="tiny">
+                    {signUpError}
+                  </ThemedText>
+                </View>
+              ) : (
+                <View style={styles.policy}>
+                  <View
+                    style={{
+                      width: 10,
+                      backgroundColor: "#55A59A",
+                      height: 10,
+                      marginRight: 10,
+                      borderRadius: "100%",
+                    }}
+                  ></View>
+                  <ThemedText style={{ width: "80%" }} type="tiny">
+                    I agree to privacy policy, cookies policy and terms and
+                    conditions.
+                  </ThemedText>
+                </View>
+              )}
+
               <View
                 style={{
                   width: "95%",
@@ -113,7 +160,7 @@ export default function HomeScreen() {
               >
                 <ThemedText type="tiny">or</ThemedText>
               </View>
-              <TouchableOpacity>
+              <TouchableOpacity onPress={signInWithGoogle}>
                 <View style={styles.button}>
                   {/* google logo */}
                   <Image
@@ -138,13 +185,20 @@ export default function HomeScreen() {
 
               {/* Login button */}
 
-              <Link href="/Login" asChild>
-                <TouchableOpacity style={styles.LoginButton}>
+              {/* <Link replace href="/Login" asChild> */}
+              <TouchableOpacity
+                style={styles.LoginButton}
+                onPress={() => submit()}
+              >
+                {SignUpLoading ? (
+                  <ActivityIndicator size="small" color="black" />
+                ) : (
                   <ThemedText style={{ color: "black" }} type="button">
                     Create account
                   </ThemedText>
-                </TouchableOpacity>
-              </Link>
+                )}
+              </TouchableOpacity>
+              {/* </Link> */}
 
               <View
                 style={{

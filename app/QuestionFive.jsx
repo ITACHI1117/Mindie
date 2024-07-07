@@ -143,7 +143,7 @@ export default function QuestionFive() {
           style={{
             display: "flex",
             alignItems: "center",
-            marginTop: "25%",
+            marginTop: "13%",
             marginLeft: -10,
           }}
         >
@@ -151,20 +151,34 @@ export default function QuestionFive() {
             Can’t find a relatable emotion? Click add emotion
           </ThemedText>
 
+          <TouchableOpacity
+            style={{
+              backgroundColor: "#131313",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              width: "90%",
+              height: 40,
+              marginTop: 10,
+              borderRadius: 8,
+            }}
+          >
+            <ThemedText>+ Add mood</ThemedText>
+          </TouchableOpacity>
           <Link href="/QuestionSix" asChild>
             <TouchableOpacity
               style={{
-                backgroundColor: "#131313",
+                width: "95%",
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
-                width: "90%",
                 height: 40,
-                marginTop: 10,
+                backgroundColor: "#FFEC51",
                 borderRadius: 8,
+                marginTop: 15,
               }}
             >
-              <ThemedText>+ Add mood</ThemedText>
+              <ThemedText style={{ color: "black" }}>Continue</ThemedText>
             </TouchableOpacity>
           </Link>
         </View>

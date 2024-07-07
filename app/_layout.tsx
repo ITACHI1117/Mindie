@@ -8,6 +8,7 @@ import { Stack } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
 import { useEffect } from "react";
 import "react-native-reanimated";
+import { DataProvider } from "../context/DataContext";
 
 import { useColorScheme } from "@/hooks/useColorScheme";
 
@@ -31,22 +32,25 @@ export default function RootLayout() {
   }
 
   return (
-    <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
-      <Stack>
-        <Stack.Screen name="index" options={{ headerShown: false }} />
-        <Stack.Screen name="Login" options={{ headerShown: false }} />
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen
-          name="DailyAssessmentPage"
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen name="+not-found" />
-        <Stack.Screen name="QuestionTwo" options={{ headerShown: false }} />
-        <Stack.Screen name="QuestionThree" options={{ headerShown: false }} />
-        <Stack.Screen name="QuestionFour" options={{ headerShown: false }} />
-        <Stack.Screen name="QuestionFive" options={{ headerShown: false }} />
-        <Stack.Screen name="QuestionSix" options={{ headerShown: false }} />
-      </Stack>
-    </ThemeProvider>
+    <DataProvider>
+      <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
+        <Stack>
+          <Stack.Screen name="index" options={{ headerShown: false }} />
+          <Stack.Screen name="Login" options={{ headerShown: false }} />
+          <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+          <Stack.Screen
+            name="DailyAssessmentPage"
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen name="+not-found" />
+          <Stack.Screen name="QuestionTwo" options={{ headerShown: false }} />
+          <Stack.Screen name="QuestionThree" options={{ headerShown: false }} />
+          <Stack.Screen name="QuestionFour" options={{ headerShown: false }} />
+          <Stack.Screen name="QuestionFive" options={{ headerShown: false }} />
+          <Stack.Screen name="QuestionSix" options={{ headerShown: false }} />
+          <Stack.Screen name="Read" options={{ headerShown: false }} />
+        </Stack>
+      </ThemeProvider>
+    </DataProvider>
   );
 }

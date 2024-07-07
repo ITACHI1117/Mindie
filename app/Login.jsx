@@ -13,7 +13,7 @@ import {
   ActivityIndicator,
   TextInput,
 } from "react-native";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { HelloWave } from "@/components/HelloWave";
 import { Link } from "expo-router";
 import ParallaxScrollView from "@/components/ParallaxScrollView";
@@ -23,17 +23,41 @@ import { useColorScheme } from "@/hooks/useColorScheme";
 import { useThemeColor } from "@/hooks/useThemeColor";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { Ionicons } from "@expo/vector-icons";
+import DataContext from "../context/DataContext";
+import { router } from "expo-router";
 
 export default function Login() {
   const colorScheme = useColorScheme();
 
-  const [viewPassword, setViewPassword] = useState(false);
+  const [viewPassword, setViewPassword] = useState(true);
 
   const color = useThemeColor({ light: "black", dark: "white" }, "text");
 
   const ViewInputPassword = () => {
     !viewPassword ? setViewPassword(true) : setViewPassword(false);
   };
+
+  const {
+    email,
+    password,
+    loginError,
+    LoginLoading,
+    allUsers,
+    signIn,
+    signed,
+    setEmail,
+    setPassword,
+    loggedInUser,
+  } = useContext(DataContext);
+
+  const handleEmailChange = (text) => {
+    setEmail(text);
+  };
+  const handlePasswordChange = (text) => {
+    setPassword(text);
+  };
+
+  signed ? router.replace("/HomeScreen") : "";
 
   return (
     <SafeAreaView>
@@ -53,6 +77,7 @@ export default function Login() {
                   placeholderTextColor={"gray"}
                   placeholder="john@example.com"
                   color="white"
+                  onChangeText={handleEmailChange}
                   //onChangeText={handlePasswordChange}
                 />
                 <Ionicons
@@ -69,6 +94,7 @@ export default function Login() {
                   style={[styles.textInput]}
                   placeholderTextColor={"gray"}
                   placeholder="***********"
+                  onChangeText={handlePasswordChange}
                   //onChangeText={handlePasswordChange}
                   color="white"
                   secureTextEntry={viewPassword}
@@ -84,12 +110,21 @@ export default function Login() {
               {/* password entry green */}
               {/* Policy */}
               <View style={styles.policy}>
-                <ThemedText
-                  style={{ width: "80%", textDecorationLine: "underline" }}
-                  type="tiny"
-                >
-                  Forgot password?
-                </ThemedText>
+                {loginError ? (
+                  <ThemedText
+                    style={{ width: "80%", color: "red" }}
+                    type="tiny"
+                  >
+                    {loginError}
+                  </ThemedText>
+                ) : (
+                  <ThemedText
+                    style={{ width: "80%", textDecorationLine: "underline" }}
+                    type="tiny"
+                  >
+                    Forgot password?
+                  </ThemedText>
+                )}
               </View>
               <View
                 style={{
@@ -129,13 +164,20 @@ export default function Login() {
 
               {/* Login button */}
 
-              <Link href="/HomeScreen" asChild>
-                <TouchableOpacity style={styles.LoginButton}>
+              {/* <Link replace href="/HomeScreen" asChild> */}
+              <TouchableOpacity
+                style={styles.LoginButton}
+                onPress={() => signIn()}
+              >
+                {LoginLoading ? (
+                  <ActivityIndicator size="small" color="black" />
+                ) : (
                   <ThemedText style={{ color: "black" }} type="button">
                     Login
                   </ThemedText>
-                </TouchableOpacity>
-              </Link>
+                )}
+              </TouchableOpacity>
+              {/* </Link> */}
 
               <View
                 style={{

@@ -22,8 +22,10 @@ import { FontAwesome } from "@expo/vector-icons";
 import { Ionicons } from "@expo/vector-icons";
 import Header from "../../components/ChatComponents/Header";
 import { ThemedText } from "@/components/ThemedText";
+import { LogBox } from "react-native";
 
 const Chat = () => {
+  LogBox.ignoreAllLogs();
   const [messages, setMessages] = useState([]);
   const [userInput, setUserInput] = useState("");
   const [loading, setLoading] = useState(false);
@@ -183,7 +185,6 @@ const Chat = () => {
           <TextInput
             value={userInput}
             onChangeText={setUserInput}
-            onSubmitEditing={sendMessage}
             style={styles.input}
             placeholder="Start a conversation"
             placeholderTextColor="gray"
@@ -223,6 +224,7 @@ const styles = StyleSheet.create({
     marginVertical: 20,
   },
   receivedMessage: {
+    marginRight: 50,
     alignSelf: "flex-start",
     backgroundColor: "#444",
     borderRadius: 10,

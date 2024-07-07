@@ -58,7 +58,7 @@ export default function QuestionTwo() {
             display: "flex",
             flexDirection: "row",
             alignItems: "center",
-            marginTop: "80%",
+            marginTop: "65%",
 
             // justifyContent: "space-between",
           }}
@@ -87,15 +87,27 @@ export default function QuestionTwo() {
               width: 20,
             }}
           >
-            <Link href="/QuestionThree" asChild>
-              <TouchableOpacity>
-                <ThemedText style={{ color: "white" }}>
-                  {sliderValue}
-                </ThemedText>
-              </TouchableOpacity>
-            </Link>
+            <TouchableOpacity>
+              <ThemedText style={{ color: "white" }}>{sliderValue}</ThemedText>
+            </TouchableOpacity>
           </View>
         </View>
+        <Link href="/QuestionThree" asChild>
+          <TouchableOpacity
+            style={{
+              width: "95%",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              height: 40,
+              backgroundColor: "#FFEC51",
+              borderRadius: 8,
+              marginTop: 15,
+            }}
+          >
+            <ThemedText style={{ color: "black" }}>Continue</ThemedText>
+          </TouchableOpacity>
+        </Link>
       </View>
     </SafeAreaView>
   );

@@ -7,35 +7,20 @@ import { ThemedText } from "@/components/ThemedText";
 import { ThemedView } from "@/components/ThemedView";
 import { useColorScheme } from "@/hooks/useColorScheme";
 import { useThemeColor } from "@/hooks/useThemeColor";
+import { AntDesign } from "@expo/vector-icons";
 
 export default function Header() {
   const colorScheme = useColorScheme();
 
   const color = useThemeColor({ light: "black", dark: "white" }, "text");
   return (
-    <SafeAreaView style={{ backgroundColor: "#181818" }}>
-      <View style={styles.headerContainer}>
-        <View style={{ display: "flex", flexDirection: "row" }}>
-          <ThemedText type="defaultSemiBold">Hello, Stephen </ThemedText>
-          <HelloWave />
-        </View>
-
-        <View>
-          <View
-            style={{
-              backgroundColor: "#FFEC51",
-              paddingLeft: 5,
-              paddingRight: 5,
-              borderRadius: 5,
-            }}
-          >
-            <ThemedText style={{ color: "black" }} type="defaultSemiBold2">
-              App Streak ⚡ 104
-            </ThemedText>
-          </View>
-        </View>
-      </View>
-    </SafeAreaView>
+    <View style={styles.headerContainer}>
+      <ThemedText style={{ fontSize: 20 }} type="defaultSemiBold">
+        {"  "}
+        Daily Assessment
+      </ThemedText>
+      <View></View>
+    </View>
   );
 }
 
@@ -44,9 +29,10 @@ const styles = StyleSheet.create({
     display: "flex",
     width: "90%",
     flexDirection: "row",
-    justifyContent: "space-between",
+    // justifyContent: "space-between",
     marginTop: 10,
     marginLeft: 20,
     height: 50,
+    marginBottom: 10,
   },
 });
