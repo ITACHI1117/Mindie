@@ -54,11 +54,16 @@ export default function QuestionTwo() {
         </ThemedText>
         <View
           style={{
-            width: "95%",
+            position: "absolute",
+            bottom: "23%",
+            width: "100%",
             display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
             flexDirection: "row",
             alignItems: "center",
             marginTop: "65%",
+            paddingHorizontal: 10,
 
             // justifyContent: "space-between",
           }}
@@ -95,6 +100,8 @@ export default function QuestionTwo() {
         <Link href="/QuestionThree" asChild>
           <TouchableOpacity
             style={{
+              position: "absolute",
+              bottom: "17%",
               width: "95%",
               display: "flex",
               alignItems: "center",
@@ -117,16 +124,20 @@ const styles = StyleSheet.create({
   headerContainer: {
     backgroundColor: "#181818",
     display: "flex",
+    alignItems: "center",
     width: "100%",
+    height: "100%",
     // justifyContent: "space-between",
     marginTop: 10,
     height: "100%",
     marginLeft: 0,
     borderTopRightRadius: 10,
     borderTopLeftRadius: 10,
-    paddingLeft: 20,
+    paddingHorizontal: 20,
   },
   questionContainer: {
+    position: "absolute",
+    left: 20,
     backgroundColor: "#131313",
     marginTop: 20,
     width: 120,

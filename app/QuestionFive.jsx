@@ -7,6 +7,7 @@ import {
   StatusBar,
   FlatList,
   Image,
+  Dimensions,
 } from "react-native";
 import React, { useState } from "react";
 import { HelloWave } from "@/components/HelloWave";
@@ -21,8 +22,10 @@ import Header from "../components/DailyAssessmentComponents/Header";
 import Slider from "@react-native-community/slider";
 
 export default function QuestionFive() {
-  const colorScheme = useColorScheme();
+  const screenHeight = Dimensions.get("window").height;
 
+  const colorScheme = useColorScheme();
+  console.log(screenHeight);
   const [selectedItems, setSelectedItems] = useState([]);
 
   const color = useThemeColor({ light: "black", dark: "white" }, "text");
@@ -69,7 +72,7 @@ export default function QuestionFive() {
   const renderItem = ({ item }) => (
     <TouchableOpacity
       style={[
-        styles.item,
+        screenHeight <= 812 ? styles.item2 : styles.item,
         selectedItems.includes(item)
           ? styles.selectedItem
           : styles.unselectedItem,
@@ -229,6 +232,15 @@ const styles = StyleSheet.create({
   item: {
     // width: 100,
     padding: 10,
+    paddingLeft: 20,
+    paddingRight: 20,
+    margin: 10,
+    alignItems: "center",
+    borderRadius: 5,
+  },
+  item2: {
+    // width: 100,
+    padding: 4,
     paddingLeft: 20,
     paddingRight: 20,
     margin: 10,

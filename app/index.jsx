@@ -12,6 +12,7 @@ import {
   TouchableWithoutFeedback,
   ActivityIndicator,
   TextInput,
+  Dimensions,
 } from "react-native";
 import { useState, useContext } from "react";
 
@@ -28,6 +29,7 @@ import { Ionicons } from "@expo/vector-icons";
 import DataContext from "../context/DataContext";
 
 export default function HomeScreen() {
+  const screenHeight = Dimensions.get("window").height;
   const colorScheme = useColorScheme();
   const {
     email,
@@ -64,7 +66,7 @@ export default function HomeScreen() {
   user ? router.replace("/Login") : "";
 
   return (
-    <SafeAreaView>
+    <SafeAreaView style={{ height: "100%" }}>
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
         <KeyboardAvoidingView
           enabled={true}
@@ -73,7 +75,11 @@ export default function HomeScreen() {
         >
           <View style={styles.container}>
             <ThemedText type="title">Welcome to Mindie ✌</ThemedText>
-            <View style={{ marginTop: 30 }}>
+            <View
+              style={{
+                marginTop: 30,
+              }}
+            >
               <ThemedText type="label">Email</ThemedText>
               <View>
                 <TextInput
@@ -178,27 +184,13 @@ export default function HomeScreen() {
                   <Image source={require("../assets/images/apple.png")}></Image>
                   <ThemedText style={{ color: "gray" }} type="tiny">
                     {"  "} SignUp with Apple
+                    {/* {screenHeight - 30} */}
                   </ThemedText>
                 </View>
               </TouchableOpacity>
               {/* back img */}
 
               {/* Login button */}
-
-              {/* <Link replace href="/Login" asChild> */}
-              <TouchableOpacity
-                style={styles.LoginButton}
-                onPress={() => submit()}
-              >
-                {SignUpLoading ? (
-                  <ActivityIndicator size="small" color="black" />
-                ) : (
-                  <ThemedText style={{ color: "black" }} type="button">
-                    Create account
-                  </ThemedText>
-                )}
-              </TouchableOpacity>
-              {/* </Link> */}
 
               <View
                 style={{
@@ -207,28 +199,49 @@ export default function HomeScreen() {
                   justifyContent: "center",
                   marginTop: 10,
                 }}
-              >
-                <Link replace href="/Login" asChild>
-                  <TouchableOpacity>
-                    <ThemedText style={{ color: "white" }} type="tiny">
-                      Already have an account?{" "}
-                      <ThemedText style={{ color: "white" }} type="tiny">
-                        Login
-                      </ThemedText>
-                    </ThemedText>
-                  </TouchableOpacity>
-                </Link>
-              </View>
+              ></View>
             </View>
           </View>
         </KeyboardAvoidingView>
       </TouchableWithoutFeedback>
+      <View
+        style={{
+          position: "absolute",
+          top: "96%",
+          width: "100%",
+          display: "flex",
+          alignItems: "center",
+        }}
+      >
+        {/* <Link replace href="/Login" asChild> */}
+        <TouchableOpacity style={styles.LoginButton} onPress={() => submit()}>
+          {SignUpLoading ? (
+            <ActivityIndicator size="small" color="black" />
+          ) : (
+            <ThemedText style={{ color: "black" }} type="button">
+              Create account
+            </ThemedText>
+          )}
+        </TouchableOpacity>
+        {/* </Link> */}
+        <Link replace href="/Login" asChild>
+          <TouchableOpacity style={{ marginTop: 10 }}>
+            <ThemedText style={{ color: "white" }} type="tiny">
+              Already have an account?{" "}
+              <ThemedText style={{ color: "white" }} type="tiny">
+                Login
+              </ThemedText>
+            </ThemedText>
+          </TouchableOpacity>
+        </Link>
+      </View>
     </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
+    height: "100%",
     marginTop: 20,
     marginLeft: 20,
   },
@@ -281,7 +294,9 @@ const styles = StyleSheet.create({
     borderRadius: 8,
   },
   LoginButton: {
-    marginTop: "30%",
+    // position: "absolute",
+    // marginTop: "30%",
+    // top: "100%",
     display: "flex",
     alignItems: "center",
     justifyContent: "center",

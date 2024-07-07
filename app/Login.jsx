@@ -60,7 +60,7 @@ export default function Login() {
   signed ? router.replace("/HomeScreen") : "";
 
   return (
-    <SafeAreaView>
+    <SafeAreaView style={{ height: "100%" }}>
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
         <KeyboardAvoidingView
           enabled={true}
@@ -163,51 +163,56 @@ export default function Login() {
               {/* back img */}
 
               {/* Login button */}
-
-              {/* <Link replace href="/HomeScreen" asChild> */}
-              <TouchableOpacity
-                style={styles.LoginButton}
-                onPress={() => signIn()}
-              >
-                {LoginLoading ? (
-                  <ActivityIndicator size="small" color="black" />
-                ) : (
-                  <ThemedText style={{ color: "black" }} type="button">
-                    Login
-                  </ThemedText>
-                )}
-              </TouchableOpacity>
-              {/* </Link> */}
-
-              <View
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  marginTop: 10,
-                }}
-              >
-                <Link href="\" asChild>
-                  <TouchableOpacity>
-                    <ThemedText style={{ color: "white" }} type="tiny">
-                      Don't have an account?{" "}
-                      <ThemedText
-                        style={{
-                          color: "white",
-                          textDecorationLine: "underline",
-                        }}
-                        type="tiny"
-                      >
-                        Create account
-                      </ThemedText>
-                    </ThemedText>
-                  </TouchableOpacity>
-                </Link>
-              </View>
             </View>
           </View>
         </KeyboardAvoidingView>
       </TouchableWithoutFeedback>
+      <View
+        style={{
+          position: "absolute",
+          bottom: "5%",
+          width: "100%",
+          display: "flex",
+          alignItems: "center",
+        }}
+      >
+        {/* <Link replace href="/HomeScreen" asChild> */}
+        <TouchableOpacity style={styles.LoginButton} onPress={() => signIn()}>
+          {LoginLoading ? (
+            <ActivityIndicator size="small" color="black" />
+          ) : (
+            <ThemedText style={{ color: "black" }} type="button">
+              Login
+            </ThemedText>
+          )}
+        </TouchableOpacity>
+        {/* </Link> */}
+        <View
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            marginTop: 10,
+          }}
+        >
+          <Link href="\" asChild>
+            <TouchableOpacity>
+              <ThemedText style={{ color: "white" }} type="tiny">
+                Don't have an account?{" "}
+                <ThemedText
+                  style={{
+                    color: "white",
+                    textDecorationLine: "underline",
+                  }}
+                  type="tiny"
+                >
+                  Create account
+                </ThemedText>
+              </ThemedText>
+            </TouchableOpacity>
+          </Link>
+        </View>
+      </View>
     </SafeAreaView>
   );
 }

@@ -37,18 +37,16 @@ export default function DailyAssessment({ data }) {
               borderRadius: 8,
             }}
           >
-            <Link href="/DailyAssessmentPage" asChild>
-              <TouchableOpacity
-                style={{
-                  display: "flex",
-                  flexDirection: "row",
-                  alignItems: "center",
-                }}
-              >
-                <Fontisto name="bell" size={18} color="white" />
-                <ThemedText> Remind me</ThemedText>
-              </TouchableOpacity>
-            </Link>
+            <TouchableOpacity
+              style={{
+                display: "flex",
+                flexDirection: "row",
+                alignItems: "center",
+              }}
+            >
+              <Fontisto name="bell" size={18} color="white" />
+              <ThemedText> Remind me</ThemedText>
+            </TouchableOpacity>
           </View>
           <View
             style={{
@@ -172,7 +170,7 @@ const styles = StyleSheet.create({
     marginTop: 10,
   },
   mooddBox: {
-    width: 100,
+    width: 80,
     height: 40,
     backgroundColor: "#181818",
     display: "flex",

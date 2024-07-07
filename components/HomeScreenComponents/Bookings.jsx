@@ -6,6 +6,7 @@ import {
   Image,
   ScrollView,
   TouchableOpacity,
+  Dimensions,
 } from "react-native";
 import React from "react";
 import { HelloWave } from "@/components/HelloWave";
@@ -21,6 +22,8 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 export default function Bookings() {
   const colorScheme = useColorScheme();
+  const screenWidth = Dimensions.get("window").width;
+  // console.log(screenWidth);
 
   const color = useThemeColor({ light: "black", dark: "white" }, "text");
   return (
@@ -56,10 +59,22 @@ export default function Bookings() {
               source={require("../../assets/images/woman.png")}
             ></Image>
             <View style={{ paddingLeft: 10 }}>
-              <ThemedText style={{ fontSize: 16 }} type="defaultSemiBold">
+              <ThemedText
+                style={
+                  screenWidth == 375
+                    ? { fontSize: 13, color: "white" }
+                    : { fontSize: 16, color: "white" }
+                }
+                type="defaultSemiBold"
+              >
                 Christene Jennifer
               </ThemedText>
-              <ThemedText type="tiny">Anxiety Therapists</ThemedText>
+              <ThemedText
+                style={screenWidth == 375 ? { fontSize: 12 } : { fontSize: 13 }}
+                type="tiny"
+              >
+                Anxiety Therapists
+              </ThemedText>
             </View>
             <Link href="/HomeScreen" asChild>
               <TouchableOpacity style={styles.LoginButton}>
@@ -80,15 +95,32 @@ export default function Bookings() {
               flexDirection: "row",
             }}
           >
-            <ThemedText type="tiny">Lagos, Nigeria </ThemedText>
+            <ThemedText
+              style={screenWidth == 375 ? { fontSize: 12 } : { fontSize: 13 }}
+              type="tiny"
+            >
+              Lagos, Nigeria{" "}
+            </ThemedText>
             <MaterialCommunityIcons
               style={{ marginLeft: 10 }}
               name="briefcase-clock"
               size={15}
               color="#97D8B2"
             />
-            <ThemedText type="tiny">Availability:</ThemedText>
-            <ThemedText type="tiny" style={{ color: "white" }}>
+            <ThemedText
+              style={screenWidth == 375 ? { fontSize: 12 } : { fontSize: 13 }}
+              type="tiny"
+            >
+              Availability:
+            </ThemedText>
+            <ThemedText
+              style={
+                screenWidth == 375
+                  ? { fontSize: 12, color: "white" }
+                  : { fontSize: 13, color: "white" }
+              }
+              type="tiny"
+            >
               {" "}
               Open to hire{" "}
             </ThemedText>
@@ -119,10 +151,22 @@ export default function Bookings() {
               source={require("../../assets/images/man.png")}
             ></Image>
             <View style={{ paddingLeft: 10 }}>
-              <ThemedText style={{ fontSize: 16 }} type="defaultSemiBold">
+              <ThemedText
+                style={
+                  screenWidth == 375
+                    ? { fontSize: 14, color: "white" }
+                    : { fontSize: 16, color: "white" }
+                }
+                type="defaultSemiBold"
+              >
                 George Kirk
               </ThemedText>
-              <ThemedText type="tiny">AMindfulness Coach</ThemedText>
+              <ThemedText
+                style={screenWidth == 375 ? { fontSize: 12 } : { fontSize: 14 }}
+                type="tiny"
+              >
+                A Mindfulness Coach
+              </ThemedText>
             </View>
             <Link href="/HomeScreen" asChild>
               <TouchableOpacity style={styles.LoginButton}>
@@ -143,15 +187,32 @@ export default function Bookings() {
               flexDirection: "row",
             }}
           >
-            <ThemedText type="tiny">San Francisco, USA </ThemedText>
+            <ThemedText
+              style={screenWidth == 375 ? { fontSize: 12 } : { fontSize: 13 }}
+              type="tiny"
+            >
+              San Francisco, USA{" "}
+            </ThemedText>
             <MaterialCommunityIcons
               style={{ marginLeft: 10 }}
               name="briefcase-clock"
               size={15}
               color="#97D8B2"
             />
-            <ThemedText type="tiny">Availability:</ThemedText>
-            <ThemedText type="tiny" style={{ color: "white" }}>
+            <ThemedText
+              style={screenWidth == 375 ? { fontSize: 12 } : { fontSize: 13 }}
+              type="tiny"
+            >
+              Availability:
+            </ThemedText>
+            <ThemedText
+              style={
+                screenWidth == 375
+                  ? { fontSize: 12, color: "white" }
+                  : { fontSize: 13, color: "white" }
+              }
+              type="tiny"
+            >
               {" "}
               Next few days{" "}
             </ThemedText>

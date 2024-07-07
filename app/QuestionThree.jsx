@@ -45,27 +45,31 @@ export default function QuestionThree() {
         >
           Have you been finding it difficult lately to make decisions?
         </ThemedText>
-        <View
-          style={{
-            width: "95%",
-            display: "flex",
-            flexDirection: "row",
-            alignItems: "center",
-            marginTop: "140%",
-            justifyContent: "space-between",
-          }}
-        >
-          <Link href="/QuestionFour" asChild>
-            <TouchableOpacity style={styles.optionButtons}>
-              <ThemedText>No</ThemedText>
-            </TouchableOpacity>
-          </Link>
-          <Link href="/QuestionFour" asChild>
-            <TouchableOpacity style={styles.optionButtons}>
-              <ThemedText>Yes</ThemedText>
-            </TouchableOpacity>
-          </Link>
-        </View>
+      </View>
+      <View
+        style={{
+          position: "absolute",
+          bottom: "13%",
+          width: "100%",
+          display: "flex",
+          alignItems: "center",
+          flexDirection: "row",
+          alignItems: "center",
+          // marginTop: "140%",
+          justifyContent: "space-between",
+          paddingHorizontal: 10,
+        }}
+      >
+        <Link href="/QuestionFour" asChild>
+          <TouchableOpacity style={styles.optionButtons}>
+            <ThemedText>No</ThemedText>
+          </TouchableOpacity>
+        </Link>
+        <Link href="/QuestionFour" asChild>
+          <TouchableOpacity style={styles.optionButtons}>
+            <ThemedText>Yes</ThemedText>
+          </TouchableOpacity>
+        </Link>
       </View>
     </SafeAreaView>
   );
