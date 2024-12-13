@@ -29,7 +29,7 @@ export default function HomeScreen({ route }) {
 
   const color = useThemeColor({ light: "black", dark: "white" }, "text");
   return (
-    <ThemedView style={{ backgroundColor: "#181818" }}>
+    <View style={{ backgroundColor: "#181818" }}>
       <Header />
       <ScrollView
         showsVerticalScrollIndicator={false}
@@ -46,7 +46,7 @@ export default function HomeScreen({ route }) {
         <RecommendedHelp />
         <Bookings />
       </ScrollView>
-    </ThemedView>
+    </View>
   );
 }
 

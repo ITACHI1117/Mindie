@@ -1,7 +1,7 @@
 import { View, Text, SafeAreaView, FlatList, TouchableOpacity, StyleSheet, Image } from 'react-native'
 import React, { useState } from 'react'
 
-const OnboardingTwo = () => {
+const OnBoardingThree = () => {
     const [selected, setSelected] = useState([])
     const [active, setActive] = useState(0)
     // console.log(selected);
@@ -12,11 +12,11 @@ const OnboardingTwo = () => {
     }
     
     const data = [
-        {id:1, title:"2 minutes or less",},
-        {id:2, title:"5 minutes", },
-        {id:3, title:"10 minutes",},
-        {id:4, title:"30 minutes", },
-        {id:5, title:"60 minutes or more",},
+        {id:1, title:"18-25",},
+        {id:3, title:"26-35",},
+        {id:4, title:"36-45", },
+        {id:5, title:"46-55",},
+        {id:6, title:"55+",},
       ];
 
     const renderItem = ({item}) =>{
@@ -34,7 +34,7 @@ const OnboardingTwo = () => {
   return (
     <SafeAreaView style={{padding:10}}>
         <View style={{display:"flex", gap:10, marginBottom:20}}>
-      <Text style={{color:"white", fontSize:30}}>How much time a day can you dedicate to your mental health?</Text>
+      <Text style={{color:"white", fontSize:30}}>How old are you?</Text>
         </View>
         <View style={{ display:"flex",paddingBottom: 100, flexGrow:1,  justifyContent:"center", marginTop:100}}>
         <FlatList
@@ -50,7 +50,6 @@ const OnboardingTwo = () => {
         </SafeAreaView>
   )
 }
-
 const styles = StyleSheet.create({
     container:{
       width:"100%",
@@ -68,4 +67,4 @@ const styles = StyleSheet.create({
     }
   })
 
-export default OnboardingTwo
+export default OnBoardingThree

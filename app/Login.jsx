@@ -68,7 +68,7 @@ export default function Login() {
           // style={{ flex: 1, width: "100%" }}
         >
           <View style={styles.container}>
-            <ThemedText type="title">Welcome back, Stephen ✌</ThemedText>
+            <ThemedText type="title">Welcome back ✌</ThemedText>
             <View style={{ marginTop: 30 }}>
               <ThemedText type="label">Email</ThemedText>
               <View>

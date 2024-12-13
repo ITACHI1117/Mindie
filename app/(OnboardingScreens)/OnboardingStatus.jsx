@@ -2,14 +2,12 @@ import { View, Text, SafeAreaView, FlatList, StyleSheet, Dimensions, TouchableOp
 import React, { useState } from 'react'
 import OnBoardingOne from './OnBoardingOne';
 import OnBoardingTwo from './OnBoardingTwo';
+import OnBoardingThree from './OnBoardingThree';
+import OnBoardingFour from './OnBoardingFour';
+import { router, useRouter } from "expo-router";
 
 const OnboardingStatus = () => {
   const [active, setActive] = useState(1)
-
- const OnBoardingFour = () => <View style={[styles.component, { backgroundColor: '#20B2AA' }]} />;
- const OnBoardingThree = () => <View style={[styles.component, { backgroundColor: "blue" }]} />;
-
-
 
   const data = [
     {id:1, component:<OnBoardingOne />},
@@ -19,7 +17,7 @@ const OnboardingStatus = () => {
   ];
 
     function handleActiveItem() {
-      active < 4 && setActive(active+1) 
+      active < 4 ? setActive(active+1) : router.push('/OnBoardingFive')
       
     }
   const renderItem = ({item}) => {
@@ -44,7 +42,7 @@ const OnboardingStatus = () => {
     />
       </View>
 
-      <TouchableOpacity onPress={() => handleActiveItem()} style={{marginLeft:100}}><Text>next</Text></TouchableOpacity>
+      {/* <TouchableOpacity onPress={() => handleActiveItem()} style={{marginLeft:100}}><Text>next</Text></TouchableOpacity> */}
 
     {data.map(({id,component}) =>{
       if(id == active){
