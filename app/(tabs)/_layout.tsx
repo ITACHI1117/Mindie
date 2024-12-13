@@ -3,10 +3,13 @@ import { AntDesign } from "@expo/vector-icons";
 import { Ionicons } from "@expo/vector-icons";
 import { Feather } from "@expo/vector-icons";
 import { Tabs } from "expo-router";
+import { useThemeColor } from '@/hooks/useThemeColor';
+
 
 export default function TabLayout() {
+  const backgroundColor = useThemeColor({ light: "white", dark: "black" }, 'background');
   return (
-    <Tabs screenOptions={{ tabBarActiveTintColor: "white" }}>
+    <Tabs  screenOptions={{ tabBarActiveTintColor: "white", }}>
       <Tabs.Screen
         name="HomeScreen"
         options={{

@@ -60,7 +60,7 @@ export default function Login() {
   signed ? router.replace("/HomeScreen") : "";
 
   return (
-    <SafeAreaView style={{ height: "100%" }}>
+    <ThemedView style={{ height: "100%" }}>
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
         <KeyboardAvoidingView
           enabled={true}
@@ -213,7 +213,7 @@ export default function Login() {
           </Link>
         </View>
       </View>
-    </SafeAreaView>
+    </ThemedView>
   );
 }
 

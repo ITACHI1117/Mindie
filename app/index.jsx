@@ -14,7 +14,7 @@ import {
   TextInput,
   Dimensions,
 } from "react-native";
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 
 import { HelloWave } from "@/components/HelloWave";
 import { Link } from "expo-router";
@@ -27,6 +27,9 @@ import { useThemeColor } from "@/hooks/useThemeColor";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { Ionicons } from "@expo/vector-icons";
 import DataContext from "../context/DataContext";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import OnboardingScreens from "./(OnboardingScreens)/Index";
+
 
 export default function HomeScreen() {
   const screenHeight = Dimensions.get("window").height;
@@ -48,7 +51,7 @@ export default function HomeScreen() {
     signInWithGoogle,
   } = useContext(DataContext);
 
-  const color = useThemeColor({ light: "black", dark: "white" }, "text");
+  const color = useThemeColor({ light: "white", dark: "black" }, "background");
 
   const [viewPassword, setViewPassword] = useState(true);
 
@@ -63,10 +66,30 @@ export default function HomeScreen() {
     setPassword(text);
   };
 
+  const [isFirstLaunch, setIsFirstLaunch] = useState(null);
+
+  useEffect(() => {
+    const checkOnboarding = async () => {
+      const hasLaunched = await AsyncStorage.getItem("hasLaunched");
+      if (hasLaunched === null) {
+        setIsFirstLaunch(true);
+        await AsyncStorage.setItem("hasLaunched", "true");
+      } else {
+        setIsFirstLaunch(true);
+      }
+    };
+
+    checkOnboarding();
+  }, []);
+
+  if (isFirstLaunch === null) {
+    return null; // Show a loading spinner if needed
+  }
+
   user ? router.replace("/Login") : "";
 
-  return (
-    <SafeAreaView style={{ height: "100%" }}>
+  return  isFirstLaunch ? <OnboardingScreens /> :(
+    <ThemedView style={{ height: "100%", backgroundColor: color }}>
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
         <KeyboardAvoidingView
           enabled={true}
@@ -235,7 +258,7 @@ export default function HomeScreen() {
           </TouchableOpacity>
         </Link>
       </View>
-    </SafeAreaView>
+    </ThemedView>
   );
 }
 
