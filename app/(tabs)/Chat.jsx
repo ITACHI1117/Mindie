@@ -23,6 +23,8 @@ import { Ionicons } from "@expo/vector-icons";
 import Header from "../../components/ChatComponents/Header";
 import { ThemedText } from "@/components/ThemedText";
 import { LogBox } from "react-native";
+import { GEN_AI_API_KEY } from '@env';
+
 
 const Chat = () => {
   LogBox.ignoreAllLogs();
@@ -32,39 +34,36 @@ const Chat = () => {
   const [isSpeaking, setIsSpeaking] = useState(false);
   const [showStopIcon, setShowStopIcon] = useState(false);
 
-  const API_KEY = "AIzaSyDJC5lt2EQ1rI07apWkMXu1sqXo0Y_Ij8s";
+  const API_KEY = GEN_AI_API_KEY;
 
-  useEffect(() => {
-    const startChat = async () => {
-      const genAI = new GoogleGenerativeAI.GoogleGenerativeAI();
-      const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
-      const prompt = "hello! ";
-      const result = await model.generateContent(prompt);
-      const response = result.response;
-      const text = await response.text();
-      console.log(text);
-      showMessage({
-        message: "Welcome to Gemini Chat 🤖",
-        description: text,
-        type: "info",
-        icon: "info",
-        duration: 2000,
-      });
+  
 
-      setMessages([
-        {
-          id: String(messages.length + 1),
-          text,
-          time: new Date().toLocaleTimeString([], {
-            hour: "2-digit",
-            minute: "2-digit",
-          }),
-          user: false,
-        },
-      ]);
-    };
-    startChat();
-  }, []);
+
+  // useEffect(async () => {
+  //   try {
+  //     setLoading(true);
+  //     const userMessage = {
+  //         id: String(messages.length + 1),
+  //         text: userInput,
+  //         user: true,
+  //     };
+
+  //     const genAI = new GoogleGenerativeAI.GoogleGenerativeAI(GEN_AI_API_KEY);
+  //     const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+  //     const prompt = userMessage.text;
+  //     const result = await model.generateContent(prompt);
+  //     const response = result.response;
+  //     const text = await response.text();
+
+  //     // Handle the text response here
+  //     console.log("Generated content:", text);
+  // } catch (error) {
+  //     console.error("Error in runChat:", error);
+  //     // Handle the error appropriately here
+  // } finally {
+  //     setLoading(false);
+  // }
+  // }, []);
 
   const sendMessage = async () => {
     // Get the current time
@@ -87,23 +86,30 @@ const Chat = () => {
     const updatedMessages = [...messages, userMessage];
     setMessages(updatedMessages);
     setUserInput("");
+    try{
+      const genAI = new GoogleGenerativeAI.GoogleGenerativeAI(API_KEY);
+      const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash-exp" });
+      const prompt = userMessage.text;
+      const result = await model.generateContent(prompt);
+      const response = result.response;
+      const text = await response.text();
 
-    const genAI = new GoogleGenerativeAI.GoogleGenerativeAI(API_KEY);
-    const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
-    const prompt = userMessage.text;
-    const result = await model.generateContent(prompt);
-    const response = result.response;
-    const text = await response.text();
+      setMessages([
+        ...updatedMessages,
+        {
+          id: String(updatedMessages.length + 1),
+          text,
+          user: false,
+          time: time,
+        },
+      ]);
+    }catch{error}{
+      console.log(error);
+      
+    }
+    
 
-    setMessages([
-      ...updatedMessages,
-      {
-        id: String(updatedMessages.length + 1),
-        text,
-        user: false,
-        time: time,
-      },
-    ]);
+    
     setLoading(false);
   };
 
@@ -183,13 +189,14 @@ const Chat = () => {
       >
         <View style={styles.inputContainer}>
           <TextInput
+            editable={false}
             value={userInput}
             onChangeText={setUserInput}
             style={styles.input}
-            placeholder="Start a conversation"
+            placeholder="Chat System Temporally Disabled😢"
             placeholderTextColor="gray"
           />
-          <TouchableOpacity onPress={sendMessage} style={styles.sendButton}>
+          <TouchableOpacity onPress={() => sendMessage()} style={styles.sendButton}>
             {loading ? (
               <ActivityIndicator size="small" color="white" />
             ) : (

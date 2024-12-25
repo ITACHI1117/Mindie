@@ -19,6 +19,7 @@ import { useThemeColor } from "@/hooks/useThemeColor";
 import { FontAwesome } from "@expo/vector-icons";
 import { Ionicons } from "@expo/vector-icons";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
+import TherapistData from "../../TherapistData";
 
 export default function Bookings() {
   const colorScheme = useColorScheme();
@@ -35,28 +36,26 @@ export default function Bookings() {
         marginBottom: 200,
       }}
     >
+      
       <View style={styles.container}>
-        <View
-          style={{
-            backgroundColor: "#181818",
-            width: "100%",
-            height: 100,
-            borderRadius: 8,
-            display: "flex",
-            alignItems: "flex-start",
-            padding: 15,
-          }}
+      {TherapistData.map(({id, name, specialization, location, availability, image}) =>{
+        if(id <=2){ return(
+          <View
+          style={styles.bookingBox}
         >
           <View
             style={{
               display: "flex",
+              width:"100%",
               flexDirection: "row",
               justifyContent: "space-between",
             }}
           >
+            <View style={{display:"flex",flexDirection:"row"}}>
             <Image
               style={{ width: 40, height: 40 }}
-              source={require("../../assets/images/woman.png")}
+              
+              source={image}
             ></Image>
             <View style={{ paddingLeft: 10 }}>
               <ThemedText
@@ -67,15 +66,17 @@ export default function Bookings() {
                 }
                 type="defaultSemiBold"
               >
-                Christene Jennifer
+                {name}
               </ThemedText>
               <ThemedText
                 style={screenWidth == 375 ? { fontSize: 12 } : { fontSize: 13 }}
                 type="tiny"
               >
-                Anxiety Therapists
+                {specialization}
               </ThemedText>
             </View>
+            </View>
+            
             <Link href="/HomeScreen" asChild>
               <TouchableOpacity style={styles.LoginButton}>
                 <ThemedText
@@ -99,7 +100,7 @@ export default function Bookings() {
               style={screenWidth == 375 ? { fontSize: 12 } : { fontSize: 13 }}
               type="tiny"
             >
-              Lagos, Nigeria{" "}
+              {location}{" "}
             </ThemedText>
             <MaterialCommunityIcons
               style={{ marginLeft: 10 }}
@@ -122,102 +123,12 @@ export default function Bookings() {
               type="tiny"
             >
               {" "}
-              Open to hire{" "}
+              {availability}{" "}
             </ThemedText>
           </View>
         </View>
-
-        <View
-          style={{
-            backgroundColor: "#181818",
-            width: "100%",
-            height: 100,
-            borderRadius: 8,
-            display: "flex",
-            alignItems: "flex-start",
-            padding: 15,
-            marginTop: 10,
-          }}
-        >
-          <View
-            style={{
-              display: "flex",
-              flexDirection: "row",
-              justifyContent: "space-between",
-            }}
-          >
-            <Image
-              style={{ width: 40, height: 40 }}
-              source={require("../../assets/images/man.png")}
-            ></Image>
-            <View style={{ paddingLeft: 10 }}>
-              <ThemedText
-                style={
-                  screenWidth == 375
-                    ? { fontSize: 14, color: "white" }
-                    : { fontSize: 16, color: "white" }
-                }
-                type="defaultSemiBold"
-              >
-                George Kirk
-              </ThemedText>
-              <ThemedText
-                style={screenWidth == 375 ? { fontSize: 12 } : { fontSize: 14 }}
-                type="tiny"
-              >
-                A Mindfulness Coach
-              </ThemedText>
-            </View>
-            <Link href="/HomeScreen" asChild>
-              <TouchableOpacity style={styles.LoginButton}>
-                <ThemedText
-                  style={{ color: "black", fontSize: 14 }}
-                  type="button"
-                >
-                  Book meeting
-                </ThemedText>
-              </TouchableOpacity>
-            </Link>
-          </View>
-          <View
-            style={{
-              marginTop: 15,
-              diplay: "flex",
-              alignItems: "center",
-              flexDirection: "row",
-            }}
-          >
-            <ThemedText
-              style={screenWidth == 375 ? { fontSize: 12 } : { fontSize: 13 }}
-              type="tiny"
-            >
-              San Francisco, USA{" "}
-            </ThemedText>
-            <MaterialCommunityIcons
-              style={{ marginLeft: 10 }}
-              name="briefcase-clock"
-              size={15}
-              color="#97D8B2"
-            />
-            <ThemedText
-              style={screenWidth == 375 ? { fontSize: 12 } : { fontSize: 13 }}
-              type="tiny"
-            >
-              Availability:
-            </ThemedText>
-            <ThemedText
-              style={
-                screenWidth == 375
-                  ? { fontSize: 12, color: "white" }
-                  : { fontSize: 13, color: "white" }
-              }
-              type="tiny"
-            >
-              {" "}
-              Next few days{" "}
-            </ThemedText>
-          </View>
-        </View>
+        )}
+      })}
       </View>
     </View>
   );
@@ -241,6 +152,16 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     justifyContent: "space-between",
     marginTop: 10,
+    gap:10,
+  },
+  bookingBox:{
+    backgroundColor: "#181818",
+    width: "100%",
+    height: 100,
+    borderRadius: 8,
+    display: "flex",
+    alignItems: "flex-start",
+    padding: 15,
   },
   mooddBox: {
     width: 100,
@@ -269,6 +190,6 @@ const styles = StyleSheet.create({
     width: 110,
     borderRadius: 8,
     textAlign: "center",
-    marginLeft: "10%",
+    
   },
 });

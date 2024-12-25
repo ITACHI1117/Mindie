@@ -83,7 +83,7 @@ export default function QuestionFour() {
   };
 
   return (
-    <SafeAreaView style={{ backgroundColor: "transparent" }}>
+    <SafeAreaView style={{ backgroundColor: "black" }}>
       <Link href="\QuestionThree" asChild>
         <TouchableOpacity>
           <Header />

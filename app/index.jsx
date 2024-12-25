@@ -76,7 +76,7 @@ export default function HomeScreen() {
         await AsyncStorage.setItem("hasLaunched", "true");
       } else {
         setIsFirstLaunch(false);
-        AsyncStorage.clear()
+        // AsyncStorage.clear()
       }
     };
 

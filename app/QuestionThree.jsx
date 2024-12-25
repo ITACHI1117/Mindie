@@ -27,7 +27,7 @@ export default function QuestionThree() {
   const color = useThemeColor({ light: "black", dark: "white" }, "text");
 
   return (
-    <SafeAreaView style={{ backgroundColor: "transparent" }}>
+    <SafeAreaView style={{ backgroundColor: "black" }}>
       <Link href="/QuestionTwo" asChild>
         <TouchableOpacity>
           <Header />

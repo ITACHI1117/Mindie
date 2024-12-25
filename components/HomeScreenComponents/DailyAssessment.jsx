@@ -113,7 +113,7 @@ export default function DailyAssessment({ data }) {
           marginTop: 10,
           display: "flex",
           flexDirection: "row",
-          justifyContent: "space-between",
+          justifyContent: "space-around",
           width: "95%",
         }}
       >

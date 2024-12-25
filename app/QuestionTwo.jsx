@@ -27,7 +27,7 @@ export default function QuestionTwo() {
   const color = useThemeColor({ light: "black", dark: "white" }, "text");
 
   return (
-    <SafeAreaView style={{ backgroundColor: "transparent" }}>
+    <SafeAreaView style={{ backgroundColor: "black" }}>
       <Link href="/DailyAssessmentPage" asChild>
         <TouchableOpacity>
           <Header />

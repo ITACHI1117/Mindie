@@ -16,10 +16,10 @@ export default function Header() {
   return (
     <View style={styles.headerContainer}>
       <AntDesign name="left" size={20} color="white" />
-      <ThemedText style={{ fontSize: 20 }} type="defaultSemiBold">
+      <Text style={{ fontSize: 20, color:"white" }} type="defaultSemiBold">
         {"  "}
         Daily Assessment
-      </ThemedText>
+      </Text>
       <View></View>
     </View>
   );

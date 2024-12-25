@@ -28,7 +28,7 @@ export default function DailyAssessmentPage() {
 
   const color = useThemeColor({ light: "black", dark: "white" }, "text");
   return (
-    <SafeAreaView style={{ backgroundColor: "transparent" }}>
+    <SafeAreaView style={{ backgroundColor: "black" }}>
       <Link href="\HomeScreen" asChild>
         <TouchableOpacity>
           <Header />

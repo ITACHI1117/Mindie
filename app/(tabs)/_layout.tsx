@@ -9,7 +9,7 @@ import { useThemeColor } from '@/hooks/useThemeColor';
 export default function TabLayout() {
   const backgroundColor = useThemeColor({ light: "white", dark: "black" }, 'background');
   return (
-    <Tabs  screenOptions={{ tabBarActiveTintColor: "white", }}>
+    <Tabs  screenOptions={{ tabBarActiveTintColor: "white", tabBarStyle:{backgroundColor:"black", borderColor:"black"}}}>
       <Tabs.Screen
         name="HomeScreen"
         options={{
